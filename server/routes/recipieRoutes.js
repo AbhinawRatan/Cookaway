@@ -6,4 +6,6 @@ const recipieController = require('../contollers/recipieController');
  */
 
 router.get('/', recipieController.homepage);
+router.get('/categories', recipieController.exploreCategories);
+
 module.exports = router;

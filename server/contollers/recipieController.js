@@ -1,5 +1,9 @@
+const dotenv =require('dotenv');
+dotenv.config ({path: '.env'});
 require('../models/database');
 const Category = require('../models/category');
+const meal = require('../models/meal');
+
 
 
 
@@ -8,44 +12,35 @@ const Category = require('../models/category');
  * Homepage
 */
 exports.homepage = async(req,res)=>{
-
-   
-
-    res.render('index',{tittle:'Cookaway-Home'});
-}
-
-
-
-async function insertmyCategoryData(){
     try {
-        await Category.insertMany([
-            {
-            "name": "American",
-            "image": "american-food.jpg"
-            },
-           {
-               "name": "Indian",
-               "image": "indian-food.jpg"
-           },
-           {
-               "name": "Chinese",
-               "image": "chieese.jpg"
-           },
-           {
-               "name": "Japanese",
-               "image": "japaese.jpg"
-           },
-           {
-               "name": "Italian",
-               "image": "itly.jpg"
-           }
-             
-           
-       ]
-       );
+        const limitNumber =5;
+        const category = await Category.find({}).limit(limitNumber);
+
+        res.render('index',{tittle:'Cookaway-Home',category});
+        
     } catch (error) {
-        console.log('err'+ error)
+        res.status(500).send({message:error.message || "Error Occured"});
         
     }
 }
-insertmyCategoryData();
+
+/** 
+ * GET/categories
+ * Categories
+*/
+exports.exploreCategories = async(req,res)=>{
+    try {
+        const limitNumber = 20;
+        const category = await Category.find({}).limit(limitNumber);
+
+        res.render('categories',{title:'Cookaway-Categories',category});
+        
+    } catch (error) {
+        res.status(500).send({message:error.message || "Error Occured"});
+        
+    }
+}
+
+
+
+
