@@ -23,40 +23,18 @@
 
 
 <div class="row row-cols-2 row-cols-lg-6 g-2 g-lg-3 py-4">
-    <a href="#" class="col text-center category__link">
+  <% if(category != '') {%> 
+    <% category.forEach(function(category,index) {  %> 
+    <a href="/categories/<%- category.name  %> " class="col text-center category__link">
         <div class="category__img shadow">
-            <img src="img/american-food.jpg" alt="burger" loading="lazy">
+            <img src="img/<%-category.image  %> " alt="<%-category.name%>" loading="lazy">
         </div>
-    <div class="pt-1 ">American Food</div>
+    <div class="pt-1 "><%-category.name%></div>
     </a>
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-            <img src="img/indian-food.jpg" alt="indian-food" loading="lazy">
-        </div>
-    <div class="pt-1 ">Indian Food</div>
-    </a>
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-            <img src="img/chieese.jpg" alt="chinese-food" loading="lazy">
-        </div>
-    <div class="pt-1 ">Chinese Food</div>
-    </a>
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-
-            <img src="img/japaese.jpg" alt="japnaese-food" loading="lazy">
-
-        </div>
-    <div class="pt-1 ">Japnaese Food</div>
-    </a>
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-
-            <img src="img/itly.jpg" alt="italian-food" loading="lazy">
-
-        </div>
-    <div class="pt-1 ">Italian Food</div>
-    </a>
+    <% })%>
+    <% } %> 
+    
+    
     <a href="/categories" class="col text-center category__link">
         <div class="category__img shadow">
 

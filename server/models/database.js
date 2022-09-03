@@ -6,3 +6,5 @@ db.once('open',function(){
     console.log('connected')
 });
 require('./category');
+require('./meal');
+
